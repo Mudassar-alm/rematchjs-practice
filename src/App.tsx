@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect } from "react";
+import GlobalStyles from "./globalStyles";
+import UserList from "./components/UserList";
+import Header from "./components/Header";
+import ToastList from "./components/ToastList";
+import { Provider } from "react-redux";
+import store, { RootState, Dispatch } from "./store/index";
+import { useSelector, useDispatch } from "react-redux";
+import User from "./components/Users/users";
+const App = () => {
+	const countState = useSelector((state: RootState) => state.count);
+	console.log("state", countState);
+	const dispatch = useDispatch<Dispatch>();
+	// useEffect(() => {
+	// 	dispatch.count.incrementAysnc(2);
+	// }, []);
+	// console.log(countState);
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+	return (
+		<Fragment>
+			<GlobalStyles />
+			<Header />
+			<User />
+		</Fragment>
+	);
+};
 
 export default App;
